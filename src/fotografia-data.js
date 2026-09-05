@@ -5,9 +5,9 @@ export const brightnessBoost = {
   'DSC01794.JPG': 2.7,
   'DSC01791.JPG': 2.6,
   'DSC01324.JPG': 2.6,
-  'DSC01804.JPG': 2.5,
+  'DSC01804.JPG': 3.0,
   'DSC01187.JPG': 2.3,
-  'DSC01802.JPG': 2.1,
+  'DSC01802.JPG': 2.6,
 };
 
 // Opisy zdjęć wyświetlane po najechaniu i w pełnoekranowym podglądzie.
