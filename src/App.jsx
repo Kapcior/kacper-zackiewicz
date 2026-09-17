@@ -27,13 +27,37 @@ const photos = Object.entries(thumbGlob)
     };
   });
 
+const posterThumbGlob = import.meta.glob('./assets/posters/thumbs/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+
+const posterFullGlob = import.meta.glob('./assets/posters/full/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+
+const posters = Object.entries(posterThumbGlob)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, src]) => {
+    const name = path.split('/').pop();
+    return {
+      src,
+      full: posterFullGlob[`./assets/posters/full/${name}`] ?? src,
+      caption: descriptions[name] || name.replace(/\.[^.]+$/, '').replace(/_/g, ' '),
+      brightness: brightnessBoost[name],
+    };
+  });
+
 const drawingImage = {
   src: 'https://placehold.co/800x800/2c2925/d8cbb0?text=SZKIC+1',
   full: 'https://placehold.co/800x800/2c2925/d8cbb0?text=SZKIC+1',
   caption: 'Studium Formy',
 };
 
-const allImages = [...photos, drawingImage];
+const allImages = [...photos, ...posters, drawingImage];
 
 function Figure({ image, index, onClick }) {
   return (
@@ -232,6 +256,24 @@ function App() {
             </div>
             <p className="text-center text-xs uppercase tracking-[0.3em] text-stone-700 mt-4">
               Kliknij zdjęcie, aby zobaczyć je w pełnych barwach
+            </p>
+          </section>
+
+          {/* Sekcja: Plakaty i Logo */}
+          <section className="mb-12">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex-grow border-t-2 border-stone-800"></div>
+              <h2 className="text-4xl font-bold uppercase font-serif text-center">Plakaty i Logo</h2>
+              <div className="flex-grow border-t-2 border-stone-800"></div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+              {posters.map((img, i) => (
+                <Figure key={img.src} image={img} index={i + photos.length} onClick={open} />
+              ))}
+            </div>
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-stone-700 mt-4">
+              Kliknij, aby zobaczyć projekt w pełnych barwach
             </p>
           </section>
 
