@@ -48,9 +48,6 @@ function Figure({ image, index, onClick }) {
             style={image.brightness ? { filter: `grayscale(1) contrast(1.02) brightness(${image.brightness})` } : undefined}
           />
         </div>
-        <p className="photo-caption absolute inset-x-1.5 bottom-1.5 px-2 py-1 text-center text-xs bg-[#eaddc4]/95 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          {image.caption}
-        </p>
       </div>
     </div>
   );
