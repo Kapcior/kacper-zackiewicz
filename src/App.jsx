@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import { brightnessBoost, descriptions } from './fotografia-data.js';
 import authorPic from './assets/author-pic.jpg';
+import opendyLogo from './assets/opendy-logo.svg';
 
 const thumbGlob = import.meta.glob('./assets/fotografia/thumbs/*', {
   eager: true,
@@ -266,22 +267,6 @@ function App() {
             </div>
           </section>
 
-          {/* Wstęp - Southern Gothic Vibe */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold uppercase border-b-2 border-stone-800 pb-2 mb-4 font-serif">
-              Rozdział I: Prolog
-            </h2>
-            <div className="columns-1 md:columns-2 gap-8 text-justify font-medium leading-relaxed">
-              <p className="mb-4">
-                <span className="float-left text-6xl font-black mr-2 leading-none font-serif mt-1">Z</span>
-                amknięte w kadrach i na papierze. Fotografia to nie tylko łapanie światła, to wyrywanie momentów z mroku. Moja twórczość balansuje między surowością a nostalgią. Szukam tekstur, głębi i historii tam, gdzie inni widzą tylko codzienność.
-              </p>
-              <p className="mb-4">
-                Przed Tobą zbiór moich prac – od klasycznej fotografii po tradycyjny rysunek. To wizytówka przygotowana specjalnie na rozmowę kwalifikacyjną, ale też surowy zapis mojej perspektywy. Znajdziesz tu eksperymenty, cienie i kadry, które nie proszą o uwagę, a same ją kradną.
-              </p>
-            </div>
-          </section>
-
           {/* Sekcja: Fotografia */}
           <section className="mb-12">
             <div className="flex items-center gap-4 mb-6">
@@ -379,7 +364,19 @@ function App() {
               <div className="flex-grow border-t-2 border-stone-800"></div>
             </div>
 
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl mx-auto text-center">
+              <a
+                href="https://opendy.io/#how-it-works"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mb-6"
+              >
+                <img
+                  src={opendyLogo}
+                  alt="Logo OpenDy"
+                  className="h-16 md:h-20 w-auto mx-auto"
+                />
+              </a>
               <p className="text-justify font-medium leading-relaxed mb-4">
                 Niniejsza gazeta jest w pełni napisaną ręcznie stroną internetową — bez gotowych
                 szablonów. Została zbudowana na React, Vite i Tailwind CSS, a na GitHub Pages
