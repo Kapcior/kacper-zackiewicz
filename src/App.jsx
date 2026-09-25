@@ -75,7 +75,31 @@ const rysunek = Object.entries(rysunekThumbGlob)
     };
   });
 
-const allImages = [...photos, ...posters, ...rysunek];
+const digitalThumbGlob = import.meta.glob('./assets/digital/thumbs/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+
+const digitalFullGlob = import.meta.glob('./assets/digital/full/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+
+const digital = Object.entries(digitalThumbGlob)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, src]) => {
+    const name = path.split('/').pop();
+    return {
+      src,
+      full: digitalFullGlob[`./assets/digital/full/${name}`] ?? src,
+      caption: descriptions[name] || name.replace(/\.[^.]+$/, '').replace(/_/g, ' '),
+      brightness: brightnessBoost[name],
+    };
+  });
+
+const allImages = [...photos, ...posters, ...rysunek, ...digital];
 
 function Figure({ image, index, onClick, className = '' }) {
   return (
@@ -303,7 +327,7 @@ function App() {
               <div className="flex-grow border-t-2 border-stone-800"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
               <div className="border-4 border-stone-800 p-1 bg-stone-900">
                 <div className="aspect-square bw-img overflow-hidden">
                   <img
@@ -321,19 +345,30 @@ function App() {
                 </p>
               </div>
             </div>
+          </section>
 
-            <div className="flex justify-center">
-              <div className="border-4 border-stone-800 p-1 bg-stone-900 w-64 md:w-80">
-                <div className="aspect-square bw-img overflow-hidden">
-                  <img
-                    src={rysunek[1].src}
-                    alt={rysunek[1].caption}
-                    className="w-full h-full object-cover cursor-pointer"
-                    onClick={() => open(photos.length + posters.length + 1)}
-                  />
-                </div>
-              </div>
+          {/* Sekcja: Digital */}
+          <section className="mb-12">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex-grow border-t-2 border-stone-800"></div>
+              <h2 className="text-4xl font-bold uppercase font-serif text-center">Digital</h2>
+              <div className="flex-grow border-t-2 border-stone-800"></div>
             </div>
+
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+              {digital.map((img, i) => (
+                <Figure
+                  key={img.src}
+                  image={img}
+                  index={photos.length + posters.length + rysunek.length + i}
+                  onClick={open}
+                  className="w-56 md:w-64"
+                />
+              ))}
+            </div>
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-stone-700 mt-4">
+              Kliknij, aby zobaczyć pracę w pełnych barwach
+            </p>
           </section>
 
           {/* Sekcja: O Stronie */}
