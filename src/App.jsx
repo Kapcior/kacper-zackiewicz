@@ -218,8 +218,7 @@ function App() {
             </h1>
             <div className="flex flex-col md:flex-row justify-between items-center border-y-2 border-stone-800 py-2 text-xs md:text-sm uppercase tracking-widest font-bold">
               <span>Gdańsk, Wrzesień 2026</span>
-              <span className="hidden md:inline">— Nr 1 —</span>
-              <span>Cena: spojrzenie</span>
+              <span className="hidden md:inline">— Nr r53753—</span>
             </div>
           </header>
 
@@ -245,24 +244,20 @@ function App() {
                   </div>
                 </div>
                 <p className="photo-caption text-center text-sm mt-2 border-b border-stone-800 pb-1">
-                  Redaktor naczelny niniejszego wydania
                 </p>
               </div>
               <div className="md:col-span-2">
                 <h3 className="text-3xl font-bold uppercase font-serif mb-4 border-b-2 border-stone-800 inline-block w-fit pb-1">
-                  Kilka słów o mnie
+                  Kilka słów o mnie 
                 </h3>
                 <p className="text-justify font-medium leading-relaxed mb-4">
-                  Nazywam się Kacper i od lat szukam światła tam, gdzie inni widzą tylko cień.
-                  Fotografia i rysunek to moje dwa języki — jeden łapie to, co ulotne,
-                  drugi zatrzymuje to, co przemyślane. Pracuję w klimatach surowych, mrocznych,
-                  przełamanych nostalgią i szorstką teksturą.
+                  Nazywam się Kacper i od kiedy pamiętam, fascynuje mnie świat wizualny. Od kilku lat amatorsko zajmuję się fotografią, ale nie tylko.
+                  Bardzo doceniam zastosowanie sztuki w różnych mediach. Bardzo lubię to w jaki sposób pozwala mi to wyra
+zić siebie i swoje emocje. Wierzę, że grafika komputerowa to idealne połączenie moich pasji i umiejętności.
                 </p>
                 <p className="text-justify font-medium leading-relaxed">
-                  Ta gazeta to moja teczka kandydata — zbiór kadrów i szkiców przygotowany na
-                  rozmowę kwalifikacyjną na kierunek Grafika Komputerowa na PJATK. Liczę, że
-                  znajdziesz tu nie tylko umiejętności, ale i charakter. Witaj w moim świecie.
-                </p>
+                  Ta strona, która jest jednocześnie jednym z elementów mojego portfolio jak i sposobem prezentacji moich prac.
+                  jest stylizowana w klimacie, który ma charakter starej prasy.                </p>
               </div>
             </div>
           </section>
@@ -324,9 +319,9 @@ function App() {
                 </div>
               </div>
               <div className="flex flex-col justify-center">
-                <h3 className="text-3xl font-bold uppercase font-serif mb-4 border-b-2 border-stone-800 inline-block w-fit pb-1">Studium Formy</h3>
+                <h3 className="text-3xl font-bold uppercase font-serif mb-4 border-b-2 border-stone-800 inline-block w-fit pb-1">CZŁOWIEK, STUDNIA, CHMURA, PTAK</h3>
                 <p className="text-justify font-medium leading-relaxed">
-                  Ołówek, węgiel i szorstki papier. Zanim cyfrowe piksele zajęły miejsce na ekranie, fundamentem zawsze była linia prowadzona ręką. Szukam brudu, niedoskonałości, surowego charakteru postaci i przestrzeni.
+  Tradycyjny rysunek, wykonany wyłącznie ołówkiem w formacie 50x50cm. Obraz ma na celu ukazać jak zakrzywiona staje się perspektywa człowieka wobec otaczającej go rzeczywistości, kiedy jest w trudniejszych chwilach w życiu. Jaskółki symbolizujące wolność i nadzieję, nie są widoczne dla mężczyzny w odbiciu tafli wody.
                 </p>
               </div>
             </div>
@@ -336,7 +331,7 @@ function App() {
           <section className="mb-12">
             <div className="flex items-center gap-4 mb-6">
               <div className="flex-grow border-t-2 border-stone-800"></div>
-              <h2 className="text-4xl font-bold uppercase font-serif text-center">Digital</h2>
+              <h2 className="text-4xl font-bold uppercase font-serif text-center">Rysunek cyfrowy</h2>
               <div className="flex-grow border-t-2 border-stone-800"></div>
             </div>
 
@@ -353,6 +348,10 @@ function App() {
             </div>
             <p className="text-center text-xs uppercase tracking-[0.3em] text-stone-700 mt-4">
               Kliknij, aby zobaczyć pracę w pełnych barwach
+            </p>
+            <p className="text-justify font-medium leading-relaxed mt-8 max-w-3xl mx-auto">
+              Od niedawna zacząłem również próbować swoich sił w rysunku tradycyjnym, poniżej
+              znajduje się przykładowa praca, wykonana w Procreate.
             </p>
           </section>
 
@@ -378,15 +377,8 @@ function App() {
                 />
               </a>
               <p className="text-justify font-medium leading-relaxed mb-4">
-                Niniejsza gazeta jest w pełni napisaną ręcznie stroną internetową — bez gotowych
-                szablonów. Została zbudowana na React, Vite i Tailwind CSS, a na GitHub Pages
-                trafia automatycznie przy każdej aktualizacji dzięki GitHub Actions.
-              </p>
-              <p className="text-justify font-medium leading-relaxed mb-6">
-                Tu opiszę, co dokładnie zrobiłem podczas budowy tej strony — od koncepcji
-                „gazetowej" estetyki, przez czarno-białą galerię z pełnokolorowym podglądem,
-                po automatyczne wdrożenie. [DODAJ SWÓJ OPIS]
-              </p>
+                Powyżej znajdujące się logo to logo platformy OpenDy. Jest to platforma, przy której miałem przyjemność brać udział w tworzeniu jako front-end developer. Współpracowałem z grafikiem i back-end developerem, aby zapewnić przystępny interfejs zgody z zasadami UX/UI.
+              </p>             
               <p className="text-center">
                 <a
                   href="https://opendy.io/#how-it-works"
@@ -394,7 +386,7 @@ function App() {
                   rel="noopener noreferrer"
                   className="inline-block border-2 border-stone-800 bg-[#d8cbb0] px-6 py-3 text-sm font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-[#eaddc4] transition-colors"
                 >
-                  Zobacz, jak powstała ta strona na OpenDy
+                  Zobacz, jak wygląda ta strona
                 </a>
               </p>
             </div>
@@ -403,7 +395,7 @@ function App() {
           {/* Stopka */}
           <footer className="border-t-4 border-stone-800 pt-6 mt-12 text-center text-sm font-bold uppercase tracking-widest flex flex-col md:flex-row justify-between">
             <span>© 2026 Kacper Z.</span>
-            <span>Redaktor naczelny: Kacper Z.</span>
+            
             <span>Str. 1</span>
           </footer>
 
