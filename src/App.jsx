@@ -51,17 +51,35 @@ const posters = Object.entries(posterThumbGlob)
     };
   });
 
-const drawingImage = {
-  src: 'https://placehold.co/800x800/2c2925/d8cbb0?text=SZKIC+1',
-  full: 'https://placehold.co/800x800/2c2925/d8cbb0?text=SZKIC+1',
-  caption: 'Studium Formy',
-};
+const rysunekThumbGlob = import.meta.glob('./assets/rysunek/thumbs/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
 
-const allImages = [...photos, ...posters, drawingImage];
+const rysunekFullGlob = import.meta.glob('./assets/rysunek/full/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
 
-function Figure({ image, index, onClick }) {
+const rysunek = Object.entries(rysunekThumbGlob)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, src]) => {
+    const name = path.split('/').pop();
+    return {
+      src,
+      full: rysunekFullGlob[`./assets/rysunek/full/${name}`] ?? src,
+      caption: descriptions[name] || name.replace(/\.[^.]+$/, '').replace(/_/g, ' '),
+      brightness: brightnessBoost[name],
+    };
+  });
+
+const allImages = [...photos, ...posters, ...rysunek];
+
+function Figure({ image, index, onClick, className = '' }) {
   return (
-    <div className="group relative cursor-pointer" onClick={() => onClick(index)}>
+    <div className={`group relative cursor-pointer ${className}`} onClick={() => onClick(index)}>
       <div className="relative border-2 border-stone-800 p-1.5 bg-[#d8cbb0] transition-transform duration-500 ease-out will-change-transform group-hover:scale-110 group-hover:z-30 group-hover:shadow-2xl">
         <div className="aspect-square bw-img overflow-hidden">
           <img
@@ -267,9 +285,9 @@ function App() {
               <div className="flex-grow border-t-2 border-stone-800"></div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               {posters.map((img, i) => (
-                <Figure key={img.src} image={img} index={i + photos.length} onClick={open} />
+                <Figure key={img.src} image={img} index={i + photos.length} onClick={open} className="w-40 md:w-48" />
               ))}
             </div>
             <p className="text-center text-xs uppercase tracking-[0.3em] text-stone-700 mt-4">
@@ -285,14 +303,14 @@ function App() {
               <div className="flex-grow border-t-2 border-stone-800"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-10">
               <div className="border-4 border-stone-800 p-1 bg-stone-900">
                 <div className="aspect-square bw-img overflow-hidden">
                   <img
-                    src={drawingImage.src}
-                    alt={drawingImage.caption}
+                    src={rysunek[0].src}
+                    alt={rysunek[0].caption}
                     className="w-full h-full object-cover cursor-pointer"
-                    onClick={() => open(allImages.length - 1)}
+                    onClick={() => open(photos.length + posters.length + 0)}
                   />
                 </div>
               </div>
@@ -302,6 +320,51 @@ function App() {
                   Ołówek, węgiel i szorstki papier. Zanim cyfrowe piksele zajęły miejsce na ekranie, fundamentem zawsze była linia prowadzona ręką. Szukam brudu, niedoskonałości, surowego charakteru postaci i przestrzeni.
                 </p>
               </div>
+            </div>
+
+            <div className="flex justify-center">
+              <div className="border-4 border-stone-800 p-1 bg-stone-900 w-64 md:w-80">
+                <div className="aspect-square bw-img overflow-hidden">
+                  <img
+                    src={rysunek[1].src}
+                    alt={rysunek[1].caption}
+                    className="w-full h-full object-cover cursor-pointer"
+                    onClick={() => open(photos.length + posters.length + 1)}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Sekcja: O Stronie */}
+          <section className="mb-12">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex-grow border-t-2 border-stone-800"></div>
+              <h2 className="text-4xl font-bold uppercase font-serif text-center">O Stronie</h2>
+              <div className="flex-grow border-t-2 border-stone-800"></div>
+            </div>
+
+            <div className="max-w-3xl mx-auto">
+              <p className="text-justify font-medium leading-relaxed mb-4">
+                Niniejsza gazeta jest w pełni napisaną ręcznie stroną internetową — bez gotowych
+                szablonów. Została zbudowana na React, Vite i Tailwind CSS, a na GitHub Pages
+                trafia automatycznie przy każdej aktualizacji dzięki GitHub Actions.
+              </p>
+              <p className="text-justify font-medium leading-relaxed mb-6">
+                Tu opiszę, co dokładnie zrobiłem podczas budowy tej strony — od koncepcji
+                „gazetowej" estetyki, przez czarno-białą galerię z pełnokolorowym podglądem,
+                po automatyczne wdrożenie. [DODAJ SWÓJ OPIS]
+              </p>
+              <p className="text-center">
+                <a
+                  href="https://opendy.io/#how-it-works"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block border-2 border-stone-800 bg-[#d8cbb0] px-6 py-3 text-sm font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-[#eaddc4] transition-colors"
+                >
+                  Zobacz, jak powstała ta strona na OpenDy
+                </a>
+              </p>
             </div>
           </section>
 
